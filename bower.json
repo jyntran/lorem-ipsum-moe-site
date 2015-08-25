@@ -1,0 +1,14 @@
+{
+  "name": "lorem-ipsum-moe-site",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jyntran/lorem-ipsum-moe-site",
+  "authors": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
