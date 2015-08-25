@@ -51,6 +51,7 @@ gulp.task('specs', function(){
   return gulp.src(specFile)
       .pipe(wiredep({
         devDependencies: true,
+        ignorePath: '../../..',
         exclude: [
           bower + 'angular-mocks/*',
           bower + 'pure/*',
@@ -60,7 +61,7 @@ gulp.task('specs', function(){
       .pipe(inject(
         gulp.src(sourcePaths.mocks,
           {read: false}),
-          {relative: true, name: 'mocks'}))
+          {name: 'mocks'}))
       .pipe(inject(
         gulp.src(sourcePaths.angular,
           {read: false}),
@@ -69,7 +70,7 @@ gulp.task('specs', function(){
         gulp.src(sourcePaths.specs,
           {read: false}),
           {name: 'specs'}))
-      .pipe(gulp.dest(current));
+      .pipe(gulp.dest(dist));
 });
 
 gulp.task('index', ['angular'], function(){
