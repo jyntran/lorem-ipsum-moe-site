@@ -39,7 +39,8 @@ var sourcePaths = {
 };
 
 var destPaths = {
-  bower: dist + 'js',
+  bower: dist + 'bower',
+  angular: dist + 'angular',
   styles: dist + 'css'
 };
 
@@ -47,7 +48,6 @@ var destPaths = {
 
 gulp.task('bower', function(){
   return gulp.src(sourcePaths.bower)
-    .pipe(debug())
     .pipe(gulp.dest(destPaths.bower));
 })
 
@@ -56,6 +56,10 @@ gulp.task('watch-views', function(){
       .pipe(watch(sourcePaths.views));
 });
 
+gulp.task('angular', function(){
+  return gulp.src(sourcePaths.angular)
+    .pipe(gulp.dest(destPaths.angular));
+})
 gulp.task('watch-angular', function(){
   return gulp.src(sourcePaths.angular)
     .pipe(watch(sourcePaths.angular));
@@ -90,16 +94,16 @@ gulp.task('specs', function(){
       .pipe(gulp.dest(current));
 });
 
-gulp.task('index', function(){
+gulp.task('index', ['bower', 'angular'], function(){
   gulp.src(indexFile)
       .pipe(inject(
         gulp.src([destPaths.bower + '/angular.js', destPaths.bower + '/**/*.js'],
           {read: false}),
-          {ignorePath: 'build', name: 'bower'}))
+          {ignorePath: dist, name: 'bower'}))
       .pipe(inject(
-        gulp.src(sourcePaths.angular + '/**/.js',
+        gulp.src(destPaths.angular + '/**/*.js',
           {read: false}),
-          {name: 'angular'}))
+          {ignorePath: dist, name: 'angular'}))
       .pipe(inject(
         gulp.src(destPaths.styles)))
       .pipe(gulp.dest(dist));
@@ -121,6 +125,6 @@ gulp.task('openbrowser', ['build'], function() {
 
 gulp.task('test', ['specs']);
 
-gulp.task('build', ['bower', 'index']);
+gulp.task('build', ['bower', 'angular', 'index']);
 gulp.task('watch', ['watch-angular', 'watch-views', 'watch-styles', 'watch-specs']);
 gulp.task('default', ['build', 'webserver', 'watch', 'openbrowser']);
