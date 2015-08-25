@@ -8,17 +8,14 @@ var gulp        = require('gulp'),
 
 /////
 
-var server = {
-  host: 'moe.jyntran.ca',
-  port: '8001'
-}
-
 var current = './';
+var client = current + 'src/client/';
+var server = current + 'src/server/';
 
-var app = 'app/';
-var dist = 'dist/';
-var test = 'test/';
-var bower = 'bower_components/';
+var app = client + 'app/';
+var dist = current + 'dist/';
+var test = client + 'test/';
+var bower = current + 'bower_components/';
 
 var indexFile = app + 'index.html';
 var specFile = test + 'spec.html';
@@ -45,31 +42,10 @@ var destPaths = {
 
 /////
 
-gulp.task('watch-views', function(){
-  return gulp.src(sourcePaths.views)
-      .pipe(watch(sourcePaths.views));
-});
-
 gulp.task('angular', function(){
   return gulp.src(sourcePaths.angular)
     .pipe(gulp.dest(destPaths.angular));
 })
-gulp.task('watch-angular', function(){
-  return gulp.src(sourcePaths.angular)
-    .pipe(watch(sourcePaths.angular));
-});
-
-gulp.task('watch-styles', function(){
-  return gulp.src(sourcePaths.styles)
-      .pipe(watch(sourcePaths.styles))
-      .pipe(sass())
-      .pipe(gulp.dest(destPaths.styles));
-});
-
-gulp.task('watch-specs', function(){
-  return gulp.src(sourcePaths.specs)
-    .pipe(watch(sourcePaths.specs));
-});
 
 gulp.task('specs', function(){
   return gulp.src(specFile)
@@ -99,6 +75,7 @@ gulp.task('specs', function(){
 gulp.task('index', ['angular'], function(){
   return gulp.src(indexFile)
       .pipe(wiredep({
+        ignorePath: '../../..'
       }))
       .pipe(inject(
         gulp.src(sourcePaths.angular,
@@ -111,7 +88,7 @@ gulp.task('index', ['angular'], function(){
 
 gulp.task('start', function () {
   nodemon({
-    script: '../server/app.js',
+    script: server + 'app.js',
     ext: 'js',
     env: { 'NODE_ENV': 'development' }
   })
@@ -120,5 +97,4 @@ gulp.task('start', function () {
 gulp.task('test', ['specs', 'start']);
 
 gulp.task('build', ['index']);
-gulp.task('watch', ['watch-angular', 'watch-views', 'watch-styles', 'watch-specs']);
-gulp.task('default', ['test', 'build', 'watch', 'start']);
+gulp.task('default', ['test', 'build', 'start']);
