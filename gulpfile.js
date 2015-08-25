@@ -75,7 +75,11 @@ gulp.task('specs', function(){
   return gulp.src(specFile)
       .pipe(wiredep({
         devDependencies: true,
-        exclude: [bower + 'angular-mocks/*']
+        exclude: [
+          bower + 'angular-mocks/*',
+          bower + 'pure/*',
+          bower + 'normalize.css/*'
+        ]
       }))
       .pipe(inject(
         gulp.src(sourcePaths.mocks,
