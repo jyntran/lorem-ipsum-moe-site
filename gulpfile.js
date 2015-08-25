@@ -2,10 +2,9 @@ var gulp        = require('gulp'),
     watch       = require('gulp-watch'),
     inject      = require('gulp-inject'),
     debug       = require('gulp-debug'),
-    bowerFiles  = require('main-bower-files'),
     sass        = require('gulp-sass'),
-    webserver   = require('gulp-webserver'),
-    opn         = require('opn');
+    nodemon     = require('gulp-nodemon'),
+    wiredep     = require('wiredep').stream;
 
 /////
 
@@ -17,14 +16,14 @@ var server = {
 var current = './';
 
 var app = 'app/';
-var dist = 'build/';
+var dist = 'dist/';
 var test = 'test/';
+var bower = 'bower_components/';
 
 var indexFile = app + 'index.html';
 var specFile = test + 'spec.html';
 
 var sourcePaths = {
-  bower: bowerFiles(),
   views: app + 'partials/**/*.html',
   angular: [
     app + '**/*.module.js', 
@@ -35,21 +34,16 @@ var sourcePaths = {
     app + '**/*.filter.js'
   ],
   styles: app + './css/**/*.scss',
+  mocks: bower + 'angular-mocks/angular-mocks.js',
   specs: test + '**/*.spec.js'
 };
 
 var destPaths = {
-  bower: dist + 'bower',
   angular: dist + 'angular',
   styles: dist + 'css'
 };
 
 /////
-
-gulp.task('bower', function(){
-  return gulp.src(sourcePaths.bower)
-    .pipe(gulp.dest(destPaths.bower));
-})
 
 gulp.task('watch-views', function(){
   return gulp.src(sourcePaths.views)
@@ -78,11 +72,15 @@ gulp.task('watch-specs', function(){
 });
 
 gulp.task('specs', function(){
-  gulp.src(specFile)
+  return gulp.src(specFile)
+      .pipe(wiredep({
+        devDependencies: true,
+        exclude: [bower + 'angular-mocks/*']
+      }))
       .pipe(inject(
-        gulp.src(sourcePaths.bower,
+        gulp.src(sourcePaths.mocks,
           {read: false}),
-          {name: 'bower'}))
+          {relative: true, name: 'mocks'}))
       .pipe(inject(
         gulp.src(sourcePaths.angular,
           {read: false}),
@@ -94,37 +92,29 @@ gulp.task('specs', function(){
       .pipe(gulp.dest(current));
 });
 
-gulp.task('index', ['bower', 'angular'], function(){
-  gulp.src(indexFile)
+gulp.task('index', ['angular'], function(){
+  return gulp.src(indexFile)
+      .pipe(wiredep({
+      }))
       .pipe(inject(
-        gulp.src([destPaths.bower + '/angular.js', destPaths.bower + '/**/*.js'],
+        gulp.src(sourcePaths.angular,
           {read: false}),
-          {ignorePath: dist, name: 'bower'}))
-      .pipe(inject(
-        gulp.src(destPaths.angular + '/**/*.js',
-          {read: false}),
-          {ignorePath: dist, name: 'angular'}))
+          {name: 'angular'}))
       .pipe(inject(
         gulp.src(destPaths.styles)))
       .pipe(gulp.dest(dist));
 });
 
-gulp.task('webserver', ['build'], function() {
-  gulp.src(dist)
-    .pipe(webserver({
-      host:             server.host,
-      port:             server.port,
-      livereload:       true,
-      directoryListing: false
-    }));
-});
+gulp.task('start', function () {
+  nodemon({
+    script: '../server/app.js',
+    ext: 'js',
+    env: { 'NODE_ENV': 'development' }
+  })
+})
 
-gulp.task('openbrowser', ['build'], function() {
-  opn( 'http://' + server.host + ':' + server.port );
-});
+gulp.task('test', ['specs', 'start']);
 
-gulp.task('test', ['specs']);
-
-gulp.task('build', ['bower', 'angular', 'index']);
+gulp.task('build', ['index']);
 gulp.task('watch', ['watch-angular', 'watch-views', 'watch-styles', 'watch-specs']);
-gulp.task('default', ['build', 'webserver', 'watch', 'openbrowser']);
+gulp.task('default', ['test', 'build', 'watch', 'start']);
