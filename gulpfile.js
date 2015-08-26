@@ -15,6 +15,7 @@ var server = current + 'src/server/';
 var app = client + 'app/';
 var dist = current + 'dist/';
 var test = client + 'test/';
+var style = client + 'style/';
 var bower = current + 'bower_components/';
 
 var indexFile = app + 'index.html';
@@ -30,14 +31,16 @@ var sourcePaths = {
     app + '**/*.directive.js',
     app + '**/*.filter.js'
   ],
-  styles: app + './css/**/*.scss',
+  styles: [
+    style + '**/*.scss'
+  ],
   mocks: bower + 'angular-mocks/angular-mocks.js',
   specs: test + '**/*.spec.js'
 };
 
 var destPaths = {
   angular: dist + 'angular',
-  styles: dist + 'css'
+  styles: dist + 'style'
 };
 
 /////
@@ -45,6 +48,12 @@ var destPaths = {
 gulp.task('angular', function(){
   return gulp.src(sourcePaths.angular)
     .pipe(gulp.dest(destPaths.angular));
+})
+
+gulp.task('styles', function(){
+  return gulp.src(sourcePaths.styles)
+    .pipe(sass())
+    .pipe(gulp.dest(destPaths.styles));
 })
 
 gulp.task('specs', function(){
@@ -73,7 +82,7 @@ gulp.task('specs', function(){
       .pipe(gulp.dest(dist));
 });
 
-gulp.task('index', ['angular'], function(){
+gulp.task('index', ['angular', 'styles'], function(){
   return gulp.src(indexFile)
       .pipe(wiredep({
         ignorePath: '../../..'
@@ -83,7 +92,7 @@ gulp.task('index', ['angular'], function(){
           {read: false}),
           {name: 'angular'}))
       .pipe(inject(
-        gulp.src(destPaths.styles)))
+        gulp.src(destPaths.styles + '**/*.css')))
       .pipe(gulp.dest(dist));
 });
 
