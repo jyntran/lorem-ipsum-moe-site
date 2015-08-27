@@ -1,0 +1,24 @@
+@mixin border-radius ($all) {
+    -webkit-border-radius: $all;
+    border-radius: $all;
+}
+
+@mixin box-sizing ($all) {
+    -moz-box-sizing: $all;
+    -webkit-box-sizing: $all;
+    box-sizing: $all;
+}
+
+@mixin transform ($all) {
+    -moz-transform: $all;
+    -ms-transform: $all;
+    -webkit-transform: $all;
+    transform: $all;
+}
+
+@mixin transition ($all) {
+    -moz-transition: $all;
+    -ms-transition: $all;
+    -webkit-transition: $all;
+    transition: $all;
+}
