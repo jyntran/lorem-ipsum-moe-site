@@ -9,6 +9,12 @@
     box-sizing: $all;
 }
 
+@mixin box-shadow ($all) {
+    -moz-box-shadow: $all;
+    -webkit-box-shadow: $all;
+    box-shadow: $all;
+}
+
 @mixin transform ($all) {
     -moz-transform: $all;
     -ms-transform: $all;

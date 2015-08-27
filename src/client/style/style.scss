@@ -16,10 +16,9 @@ html, body {
     background-image: url('/assets/img/sidebar.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    @include box-shadow(1px 0px 4px rgba(0,0,0,0.2));
 
-    .top {
-        height: 120px;
-    }
+    .top {}
 
     .avatar {
         width: 96px;
@@ -29,6 +28,7 @@ html, body {
         position: relative;
         border: 2px solid white;
         @include border-radius(100%);
+        @include box-shadow(2px 2px 4px $black-20);
         z-index: 1;
 
         img {
@@ -54,6 +54,8 @@ html, body {
             padding: 0;
             margin: 16px;
             list-style-type: none;
+            @include box-shadow(0px 0px 2px $black-20);
+            @include border-radius(8px);
         }
 
         &-item {
@@ -70,6 +72,17 @@ html, body {
                 color: $blue;
                 text-decoration: none;
                 padding: 8px;
+                font-size: 0.8em;
+            }
+
+            &:first-child {
+                border-top-left-radius: inherit;
+                border-top-right-radius: inherit;
+            }
+
+            &:last-child {
+                border-bottom-left-radius: inherit;
+                border-bottom-right-radius: inherit;
             }
         }
     }
@@ -83,4 +96,9 @@ html, body {
         color: $blue;
         text-decoration: none;
     }
+}
+
+span.emphasis {
+    color: $blue;
+    text-transform: uppercase;
 }
