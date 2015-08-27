@@ -27,7 +27,12 @@
   </head>
   <body data-ng-app="app">
 
-    <div data-ng-include="'/src/client/app/layout/layout.template.html'"></div>
+    <div class="pure-g container">
+        <div class="sidebar pure-u-1 pure-u-sm-1-3 pure-u-md-1-4" data-ng-include="'/src/client/app/layout/sidebar.template.html'"></div>
+        <div class="content pure-u-1 pure-u-sm-2-3 pure-u-md-3-4">
+            <div data-ui-view></div>
+        </div>
+    </div>
 
     <!-- inject:js -->
     <!-- endinject -->
