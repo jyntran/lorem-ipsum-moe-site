@@ -1,1 +1,9 @@
 bower_components
+node_modules
+dist
+deploy
+halt
+nohup.out
+src/api
+assets
+favicon.ico
