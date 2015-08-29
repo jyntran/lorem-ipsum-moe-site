@@ -135,3 +135,18 @@ span.emphasis {
 label {
     font-size: 0.8em;
 }
+
+.well {
+    @include border-radius(8px);
+    padding: 0.4em;
+    margin: 0.4em;
+    border: 1px solid $gray-light;
+    pre {
+        margin: 0;
+        word-wrap: break-word;
+    }
+}
+
+.pure-button {
+    margin: 16px auto;
+}
