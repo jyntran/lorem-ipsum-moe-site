@@ -60,10 +60,20 @@ html, body {
 
         &-item {
             background-color: $white-80;
+            border-left: 8px solid transparent;
+            @include transition(all linear 150ms);
+
             &:hover {
-                background-color: $blue;
+                background-color: $pink;
                 & a {
                     color: white;
+                }
+            }
+
+            &-active {
+                border-left-color: $blue;
+                &:hover {
+                    border-left-color: $pink;
                 }
             }
 
@@ -93,8 +103,31 @@ html, body {
     @include box-sizing(border-box);
 
     a {
-        color: $blue;
+        color: $pink;
         text-decoration: none;
+        position: relative;
+
+        &:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: $pink;
+            visibility: hidden;
+            @include transform(scaleX(0));
+            @include transition(all 0.3s ease-in-out 0s);
+        }
+
+        &:hover {
+            color: $pink;
+
+            &:before {
+                visibility: visible;
+                @include transform(scaleX(1));
+            }
+        }
     }
 }
 

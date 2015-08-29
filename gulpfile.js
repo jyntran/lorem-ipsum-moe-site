@@ -52,6 +52,7 @@ gulp.task('angular', function(){
 
 gulp.task('styles', function(){
   return gulp.src(sourcePaths.styles)
+    .pipe(watch(sourcePaths.styles))
     .pipe(sass())
     .pipe(gulp.dest(destPaths.styles));
 })
