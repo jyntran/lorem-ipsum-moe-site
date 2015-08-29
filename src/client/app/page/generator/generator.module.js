@@ -1,6 +1,7 @@
 (function(){
     'use strict';
 
-    angular
-        .module('generator', []);
+    angular.module('generator', [
+        'api'
+    ]);
 })();
