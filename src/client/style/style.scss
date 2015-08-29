@@ -6,11 +6,7 @@ html, body {
     color: $gray-dark;
 }
 
-.container {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-}
+.container {}
 
 .sidebar {
     background-image: url('/assets/img/sidebar.jpg');
@@ -134,4 +130,8 @@ html, body {
 span.emphasis {
     color: $blue;
     text-transform: uppercase;
+}
+
+label {
+    font-size: 0.8em;
 }
