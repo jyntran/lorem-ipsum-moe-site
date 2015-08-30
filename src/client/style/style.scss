@@ -4,6 +4,8 @@
 html, body {
     background-color: white;
     color: $gray-dark;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .container {
@@ -148,6 +150,31 @@ label {
     }
 }
 
+.result {
+    font-family: monospace;
+    white-space: pre-wrap;
+    &.ng-enter {
+        @include animation(bounceInUp 1s);
+    }
+    &.change {
+        @include animation(fadeIn 0.2s);
+    }
+}
+
 .pure-button {
     margin: 16px auto;
+}
+
+.view {
+    background-color: white;
+    &.ng-enter {
+        position: absolute;
+        @include animation(bounceInUp 1s);
+        z-index: 2;
+    }
+    &.ng-leave {
+        position: absolute;
+        @include animation(bounceOutDown 1s);
+        z-index: 1;
+    }
 }
