@@ -3,6 +3,10 @@
 
     angular.module('app', [
         'routing',
-        'pages'
+        'pages',
+        // Angular
+        'ngAnimate',
+        // third party
+        'thirdparty'
     ]);
 })();
