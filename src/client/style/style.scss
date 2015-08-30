@@ -60,7 +60,6 @@ html, body {
 
         &-item {
             background-color: $white-80;
-            border-left: 8px solid transparent;
             @include transition(all linear 150ms);
 
             &:hover {
@@ -71,10 +70,8 @@ html, body {
             }
 
             &-active {
-                border-left-color: $blue;
-                &:hover {
-                    border-left-color: $pink;
-                }
+                font-weight: bold;
+                text-transform: uppercase;
             }
 
             a {
