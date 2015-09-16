@@ -67,18 +67,6 @@ html, body {
             background-color: $white-80;
             @include transition(all linear 150ms);
 
-            &:hover {
-                background-color: $pink;
-                & a {
-                    color: white;
-                }
-            }
-
-            &-active {
-                font-weight: bold;
-                text-transform: uppercase;
-            }
-
             a {
                 display: block;
                 color: $blue;
@@ -95,6 +83,20 @@ html, body {
             &:last-child {
                 border-bottom-left-radius: inherit;
                 border-bottom-right-radius: inherit;
+            }
+
+            &:hover {
+                background-color: $blue;
+                & a {
+                    color: white;
+                }
+            }
+
+            &-active {
+                background-color: $pink;
+                & a {
+                    color: white;
+                }
             }
         }
     }
@@ -142,20 +144,27 @@ label {
     font-size: 0.8em;
 }
 
+ul {
+    list-style-type: none;
+    padding-left: 16px;
+    &.list {
+        font-size: 0.8em;
+    }
+}
+
 .well {
     @include border-radius(8px);
     padding: 0.4em;
     margin: 0.4em;
     border: 1px solid $gray-light;
-    pre {
-        margin: 0;
-        word-wrap: break-word;
-    }
+}
+
+.code {
+    font-family: monospace;
+    white-space: pre-wrap;    
 }
 
 .result {
-    font-family: monospace;
-    white-space: pre-wrap;
     &.ng-enter {
         @include animation(bounceInUp 1s);
     }
@@ -165,7 +174,7 @@ label {
 }
 
 .pure-button {
-    margin: 16px auto;
+    margin: 8px auto;
 }
 
 .view {
