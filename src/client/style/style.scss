@@ -56,7 +56,7 @@ html, body {
         @include animation(fadeIn 0.4s);
 
         &-list {
-            padding: 0;
+            padding: 0px;
             margin: 16px;
             list-style-type: none;
             @include box-shadow(0px 0px 2px $black-20);
@@ -185,6 +185,14 @@ label {
 
 .sidebar {
     height: 100%;
+
+    .navigation {
+        &-list {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 240px;
+        }
+    }
 }
 
 }
