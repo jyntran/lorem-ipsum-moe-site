@@ -26,7 +26,7 @@
             <ul class="list">
                 <pre>p</pre>
                 <li><span class="emphasis">Type:</span> integer</li>
-                <li><span class="emphasis">Description:</span> number of paragraphs</li>
+                <li><span class="emphasis">Description:</span> Number of paragraphs.</li>
                 <li><span class="emphasis">Default:</span> 3</li>
             </ul>
         </div>
@@ -35,7 +35,7 @@
             <ul class="list">
                 <pre>s</pre>
                 <li><span class="emphasis">Type:</span> integer</li>
-                <li><span class="emphasis">Description:</span> number of sentences</li>
+                <li><span class="emphasis">Description:</span> Number of sentences.</li>
                 <li><span class="emphasis">Default:</span> 6</li>
             </ul>
         </div>
@@ -44,7 +44,7 @@
             <ul class="list">
                 <pre>w</pre>
                 <li><span class="emphasis">Type:</span> integer</li>
-                <li><span class="emphasis">Description:</span> number of words</li>
+                <li><span class="emphasis">Description:</span> Number of words.</li>
                 <li><span class="emphasis">Default:</span> 8</li>
             </ul>
         </div>
@@ -53,7 +53,7 @@
             <ul class="list">
                 <pre>lorem</pre>
                 <li><span class="emphasis">Type:</span> boolean</li>
-                <li><span class="emphasis">Description:</span> start with Lorem Ipsum</li>
+                <li><span class="emphasis">Description:</span> Start with Lorem Ipsum.</li>
                 <li><span class="emphasis">Default:</span> false</li>
             </ul>
         </div>
@@ -62,8 +62,22 @@
             <ul class="list">
                 <pre>nsfw</pre>
                 <li><span class="emphasis">Type:</span> boolean</li>
-                <li><span class="emphasis">Description:</span> include NSFW words</li>
+                <lsi><span class="emphasis">Description:</span> Include NSFW words.</li>
                 <li><span class="emphasis">Default:</span> false</li>
+            </ul>
+        </div>
+
+        <div class="well">
+            <ul class="list">
+                <pre>format</pre>
+                <li><span class="emphasis">Type:</span> string</li>
+                <li><span class="emphasis">Description:</span> Format the response.
+                <ul>
+                	<li><i>json</i> returns an array of paragraphs.</li>
+                	<li><i>text</i> returns plaintext.</li>
+                	<li><i>html</i> returns text wrapped in paragraph tags.</li>
+            	</ul>
+                <li><span class="emphasis">Default:</span> json</li>
             </ul>
         </div>
     </div>
