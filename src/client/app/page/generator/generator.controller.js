@@ -11,7 +11,8 @@
         vm.config = {
             w: 8,
             s: 6,
-            p: 3
+            p: 3,
+            format: 'json'
         };
         vm.result;
 
