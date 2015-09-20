@@ -1,5 +1,7 @@
 (function(){
     'use strict';
 
-    angular.module('thirdparty', []);
+    angular.module('thirdparty', [
+    	'ngDialog'
+	]);
 })();
