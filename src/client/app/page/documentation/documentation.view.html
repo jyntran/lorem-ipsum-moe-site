@@ -16,12 +16,16 @@
         <h3>Examples</h3>
         <div class="well">
             <ul class="list">
-                <pre>/get?p=2</pre>
-                Returns two paragraphs.
+                <pre>/get?p=2&lorem=true</pre>
+                Returns two paragraphs beginning with Lorem Ipsum.
             </ul>
             <ul class="list">
                 <pre>/get?s=4&w=6</pre>
                 Returns four sentences with six words each.
+            </ul>
+            <ul class="list">
+                <pre>/get?p=3&format=text</pre>
+                Returns three paragraphs as plaintext.
             </ul>
         </div>
     </div>
@@ -78,12 +82,7 @@
             <ul class="list">
                 <pre>format</pre>
                 <li><span class="emphasis">Type:</span> string</li>
-                <li><span class="emphasis">Description:</span> Format the response.
-                <ul class="list">
-                	<li><i>json</i> returns an array of paragraphs.</li>
-                	<li><i>text</i> returns plaintext.</li>
-                	<li><i>html</i> returns text wrapped in paragraph tags.</li>
-            	</ul>
+                <li><span class="emphasis">Description:</span> Format the response. Options: json, text, html</li>
                 <li><span class="emphasis">Default:</span> json</li>
             </ul>
         </div>
