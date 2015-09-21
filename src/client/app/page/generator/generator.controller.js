@@ -16,6 +16,8 @@
         };
         vm.result;
 
+        vm.isLoading = false;
+
         vm.submit = submit;
 
         init();
@@ -24,9 +26,11 @@
         function init() {}
 
         function submit() {
+            vm.isLoading = true;
             vm.error = null;
             ApiService.get(vm.config)
             .then(function(resp){
+                vm.isLoading = false;
                 if (resp.status != 200) {
                     vm.error = resp;
                     if (!ngDialog.isOpen('modal-error'))
@@ -38,6 +42,7 @@
                     vm.result = resp.data;                    
                 }
             }, function(error){
+                vm.isLoading = false;
                 console.log('An error has occurred!');
             })
         }
