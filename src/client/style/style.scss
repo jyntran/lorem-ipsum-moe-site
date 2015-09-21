@@ -56,8 +56,9 @@ html, body {
         @include animation(fadeIn 0.4s);
 
         &-list {
-            padding: 16px;
-            margin: 16px;
+	    width: 80%;
+            padding: 0px;
+            margin: 16px auto;
             list-style-type: none;
             @include box-shadow(0px 0px 2px $black-20);
             @include border-radius(8px);
@@ -172,7 +173,16 @@ label {
     margin: 16px auto;
 }
 
+.list {
+    list-style-type: none;
+}
+
 .view {
+    position: absolute;
+    width: 100%;
+    max-width: 768px;
+    background-color: white;
+
     &.ng-enter {
         position: absolute;
         @include animation(bounceInUp 1s);
@@ -192,8 +202,6 @@ label {
 
     .navigation {
         &-list {
-            margin-left: auto;
-            margin-right: auto;
             max-width: 240px;
         }
     }
