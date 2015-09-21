@@ -27,7 +27,7 @@
                 <label for="gen-format-text">Text</label><input id="gen-format-text" type="radio" name="gen-format" data-ng-model="gen.config.format" value="text"/>
             </div>
             <div class="pure-control-group">
-                <input type="submit" value="GET!" class="pure-button pure-button-primary" />
+                <input type="submit" value="GET!" class="pure-button pure-button-primary" data-ng-disabled="gen.isLoading" />
             </div>
         </form>
     </div>
