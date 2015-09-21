@@ -4,8 +4,6 @@
 html, body {
     background-color: white;
     color: $gray-dark;
-    overflow-x: hidden;
-    overflow-y: scroll;
 }
 
 .container {
@@ -19,6 +17,8 @@ html, body {
     background-size: cover;
     background-repeat: no-repeat;
     @include box-shadow(1px 0px 4px rgba(0,0,0,0.2));
+    position: relative;
+    z-index: 3;
 
     .top {}
 
@@ -32,7 +32,7 @@ html, body {
         background-color: $blue;
         @include border-radius(100%);
         @include box-shadow(2px 2px 4px $black-20);
-        z-index: 1;
+        z-index: 4;
         @include animation(zoomIn 0.4s);
 
         img {
@@ -102,7 +102,9 @@ html, body {
 }
 
 .content {
+    height: 100%;
     padding: 16px;
+    position: relative;
     @include box-sizing(border-box);
 
     a {
@@ -153,7 +155,7 @@ label {
     margin: 0.4em;
     border: 1px solid $gray-light;
     pre {
-        margin: 0;
+        margin: 8px 0;
         word-wrap: break-word;
     }
 }
@@ -178,7 +180,6 @@ label {
 }
 
 .view {
-    position: absolute;
     width: 100%;
     max-width: 768px;
     background-color: white;
@@ -196,6 +197,14 @@ label {
 }
 
 @media all and (min-width: 568px) {
+
+body {
+    overflow: hidden;
+}
+
+.content {
+    overflow-y: auto;
+}
 
 .sidebar {
     height: 100%;
