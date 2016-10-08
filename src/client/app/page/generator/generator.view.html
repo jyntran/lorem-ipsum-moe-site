@@ -28,6 +28,7 @@
             </div>
             <div class="pure-control-group">
                 <input type="submit" value="GET!" class="pure-button pure-button-primary" data-ng-disabled="gen.isLoading" />
+		<input type="button" value="Copy to Clipboard" class="pure-button pure-button-secondary clipboard" data-clipboard-target="#result" data-ng-if="gen.result" />
             </div>
         </form>
     </div>
