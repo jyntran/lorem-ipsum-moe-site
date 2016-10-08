@@ -20,6 +20,9 @@
 
         vm.submit = submit;
 
+	vm.copy = copy;
+	vm.copied = false;
+
         init();
         /////
 
@@ -39,12 +42,17 @@
                             closeByDocument: false
                         });
                 } else {
-                    vm.result = resp.data;                    
+                    vm.result = resp.data;
+		    vm.copied = false;
                 }
             }, function(error){
                 vm.isLoading = false;
                 console.log('An error has occurred!');
             })
         }
+
+	function copy() {
+	    vm.copied = true;
+	}
     }
 })();
