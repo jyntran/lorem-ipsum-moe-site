@@ -1,32 +1,41 @@
 <h2>The <span class="emphasis">moe</span>-st wonderful Lorem Ipsum generator ever.</h2>
 <div data-ng-controller="GeneratorCtrl as gen" class="pure-g">
-    <form class="pure-form pure-form-aligned pure-u-1 pure-u-md-1-2" data-ng-submit="gen.submit()">
-        <legend>Generate</legend>
-        <div class="pure-control-group">
-            <label for="gen-num-words"># of Words</label>
-            <input id="gen-num-words" type="number" min="1" data-ng-model="gen.config.w" class="pure-input-1-4"/>
-        </div>
-        <div class="pure-control-group">
-            <label for="gen-num-sentences"># of Sentences</label>
-            <input id="gen-num-sentences" type="number" min="1" data-ng-model="gen.config.s" class="pure-input-1-4" />
-        </div>
-        <div class="pure-control-group">
-            <label for="gen-num-paragraphs"># of Paragraphs</label>
-            <input id="gen-num-paragraphs" type="number" min="1" data-ng-model="gen.config.p" class="pure-input-1-4" />
-        </div>
-        <div class="pure-control-group">
-            <label for="gen-lorem">Start with Lorem Ipsum</label><input id="gen-lorem" type="checkbox" data-ng-model="gen.config.lorem" />
-        </div>
-        <div class="pure-control-group">
-            <label for="gen-nsfw">Include NSFW words</label><input id="gen-nsfw" type="checkbox" data-ng-model="gen.config.nsfw" />
-        </div>
-        <div class="pure-control-group">
-            <input type="submit" value="GET!" class="pure-button pure-button-primary" />
-        </div>
-    </form>
     <div class="pure-u-1">
-        <div class="well" data-ng-if="gen.result">
-            <pre>{{gen.result}}</pre>
-        </div>
+        <form class="pure-form pure-form-aligned" data-ng-submit="gen.submit()">
+            <legend>Generate</legend>
+            <div class="pure-control-group">
+                <label for="gen-num-words"># of Words</label>
+                <input id="gen-num-words" type="number" min="1" data-ng-model="gen.config.w"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="gen-num-sentences"># of Sentences</label>
+                <input id="gen-num-sentences" type="number" min="1" data-ng-model="gen.config.s" />
+            </div>
+            <div class="pure-control-group">
+                <label for="gen-num-paragraphs"># of Paragraphs</label>
+                <input id="gen-num-paragraphs" type="number" min="1" data-ng-model="gen.config.p" />
+            </div>
+            <div class="pure-control-group">
+                <label for="gen-lorem">Start with Lorem Ipsum</label><input id="gen-lorem" type="checkbox" data-ng-model="gen.config.lorem" />
+            </div>
+            <div class="pure-control-group">
+                <label for="gen-nsfw">Include NSFW words</label><input id="gen-nsfw" type="checkbox" data-ng-model="gen.config.nsfw" />
+            </div>
+            <div class="pure-control-group">
+                <label for="gen-format-json">JSON</label><input id="gen-format-json" type="radio" name="gen-format" data-ng-model="gen.config.format" value="json"/>
+                <label for="gen-format-html">HTML</label><input id="gen-format-html" type="radio" name="gen-format" data-ng-model="gen.config.format" value="html"/>
+                <label for="gen-format-text">Text</label><input id="gen-format-text" type="radio" name="gen-format" data-ng-model="gen.config.format" value="text"/>
+            </div>
+            <div class="pure-control-group">
+                <input type="submit" value="GET!" class="pure-button pure-button-primary" data-ng-disabled="gen.isLoading" />
+		<button type="button" class="pure-button pure-button-secondary clipboard" data-clipboard-target="#result" data-ng-if="gen.result" data-ng-click="gen.copy()">
+			<span data-ng-show="gen.copied">Copied!</span>
+			<span data-ng-hide="gen.copied">Copy to Clipboard</span>
+		</button>
+            </div>
+        </form>
+    </div>
+    <div class="pure-u-1">
+        <div class="well result" id="result" data-ng-if="gen.result" animate-on-change="gen.result">{{gen.result}}</div>
     </div>
 </div>

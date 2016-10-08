@@ -1,1 +1,90 @@
 <h2>API Documentation</h2>
+
+<div>
+    <div>
+        <pre>http://moe.jyntran.ca/api/get</pre>
+    </div>
+
+    <div>
+        <h3>Limitation</h3>
+        <p>
+            The API is free to use. The only limitation at this time is the request rate, which is set to 120 requests a minute (~2 requests a second). This may change depending on demand.
+        </p>
+    </div>
+
+    <div>
+        <h3>Examples</h3>
+        <div class="well">
+            <ul class="list">
+                <pre>/get?p=2&lorem=true</pre>
+                Returns two paragraphs beginning with Lorem Ipsum.
+            </ul>
+            <ul class="list">
+                <pre>/get?s=4&w=6</pre>
+                Returns four sentences with six words each.
+            </ul>
+            <ul class="list">
+                <pre>/get?p=3&format=text</pre>
+                Returns three paragraphs as plaintext.
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <h3>Queries</h3>
+
+        <div class="well">
+            <ul class="list">
+                <pre>p</pre>
+                <li><span class="emphasis">Type:</span> integer</li>
+                <li><span class="emphasis">Description:</span> Number of paragraphs.</li>
+                <li><span class="emphasis">Default:</span> 3</li>
+            </ul>
+        </div>
+
+        <div class="well">
+            <ul class="list">
+                <pre>s</pre>
+                <li><span class="emphasis">Type:</span> integer</li>
+                <li><span class="emphasis">Description:</span> Number of sentences.</li>
+                <li><span class="emphasis">Default:</span> 6</li>
+            </ul>
+        </div>
+        
+        <div class="well">
+            <ul class="list">
+                <pre>w</pre>
+                <li><span class="emphasis">Type:</span> integer</li>
+                <li><span class="emphasis">Description:</span> Number of words.</li>
+                <li><span class="emphasis">Default:</span> 8</li>
+            </ul>
+        </div>
+
+        <div class="well">
+            <ul class="list">
+                <pre>lorem</pre>
+                <li><span class="emphasis">Type:</span> boolean</li>
+                <li><span class="emphasis">Description:</span> Start with Lorem Ipsum.</li>
+                <li><span class="emphasis">Default:</span> false</li>
+            </ul>
+        </div>
+
+        <div class="well">
+            <ul class="list">
+                <pre>nsfw</pre>
+                <li><span class="emphasis">Type:</span> boolean</li>
+                <lsi><span class="emphasis">Description:</span> Include NSFW words.</li>
+                <li><span class="emphasis">Default:</span> false</li>
+            </ul>
+        </div>
+
+        <div class="well">
+            <ul class="list">
+                <pre>format</pre>
+                <li><span class="emphasis">Type:</span> string</li>
+                <li><span class="emphasis">Description:</span> Format the response. Options: json, text, html</li>
+                <li><span class="emphasis">Default:</span> json</li>
+            </ul>
+        </div>
+    </div>
+</div>

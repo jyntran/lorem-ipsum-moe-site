@@ -1,3 +1,10 @@
+@mixin animation ($all) {
+    -webkit-animation: $all;
+    -moz-animation: $all;
+    -ms-animation: $all;
+    animation: $all;
+}
+
 @mixin border-radius ($all) {
     -webkit-border-radius: $all;
     border-radius: $all;

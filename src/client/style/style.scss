@@ -17,6 +17,8 @@ html, body {
     background-size: cover;
     background-repeat: no-repeat;
     @include box-shadow(1px 0px 4px rgba(0,0,0,0.2));
+    position: relative;
+    z-index: 3;
 
     .top {}
 
@@ -27,9 +29,11 @@ html, body {
         margin: 16px auto;
         position: relative;
         border: 2px solid white;
+        background-color: $blue;
         @include border-radius(100%);
         @include box-shadow(2px 2px 4px $black-20);
-        z-index: 1;
+        z-index: 4;
+        @include animation(zoomIn 0.4s);
 
         img {
             height: 100%;
@@ -49,10 +53,12 @@ html, body {
 
     .navigation {
         width: 100%;
+        @include animation(fadeIn 0.4s);
 
         &-list {
-            padding: 0;
-            margin: 16px;
+	    width: 80%;
+            padding: 0px;
+            margin: 16px auto;
             list-style-type: none;
             @include box-shadow(0px 0px 2px $black-20);
             @include border-radius(8px);
@@ -60,7 +66,6 @@ html, body {
 
         &-item {
             background-color: $white-80;
-            border-left: 8px solid transparent;
             @include transition(all linear 150ms);
 
             &:hover {
@@ -71,10 +76,8 @@ html, body {
             }
 
             &-active {
-                border-left-color: $blue;
-                &:hover {
-                    border-left-color: $pink;
-                }
+                font-weight: bold;
+                text-transform: uppercase;
             }
 
             a {
@@ -99,7 +102,9 @@ html, body {
 }
 
 .content {
+    height: 100%;
     padding: 16px;
+    position: relative;
     @include box-sizing(border-box);
 
     a {
@@ -136,6 +141,10 @@ span.emphasis {
     text-transform: uppercase;
 }
 
+span.error {
+    color: $pink;
+}
+
 label {
     font-size: 0.8em;
 }
@@ -146,11 +155,65 @@ label {
     margin: 0.4em;
     border: 1px solid $gray-light;
     pre {
-        margin: 0;
+        margin: 8px 0;
         word-wrap: break-word;
+    }
+}
+
+.result {
+    font-family: monospace;
+    white-space: pre-wrap;
+    &.ng-enter {
+        @include animation(bounceInUp 1s);
+    }
+    &.change {
+        @include animation(fadeIn 0.2s);
     }
 }
 
 .pure-button {
     margin: 16px auto;
+}
+
+.list {
+    list-style-type: none;
+}
+
+.view {
+    width: 100%;
+    max-width: 768px;
+    background-color: white;
+
+    &.ng-enter {
+        position: absolute;
+        @include animation(bounceInUp 1s);
+        z-index: 2;
+    }
+    &.ng-leave {
+        position: absolute;
+        @include animation(bounceOutDown 1s);
+        z-index: 1;
+    }
+}
+
+@media all and (min-width: 568px) {
+
+body {
+    overflow: hidden;
+}
+
+.content {
+    overflow-y: auto;
+}
+
+.sidebar {
+    height: 100%;
+
+    .navigation {
+        &-list {
+            max-width: 240px;
+        }
+    }
+}
+
 }

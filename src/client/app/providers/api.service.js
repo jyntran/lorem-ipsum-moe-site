@@ -16,10 +16,10 @@
         function get(params) {
             return $http.get('/api/get', {params: params})
             .then(function(resp){
-                return resp.data;
+                return resp;
             }, function(error){
-                console.log('ERROR: get()')
-                console.log(error)
+                //console.log('ERROR: ' + error.status + ' - ' + error.data);
+                return error;
             });            
         }
     }
