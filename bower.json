@@ -26,5 +26,8 @@
     "chai": "~3.2.0",
     "mocha": "~2.2.5",
     "sinon-chai": "~2.8.0"
+  },
+  "resolutions": {
+    "angular": "1.4.9"
   }
 }
