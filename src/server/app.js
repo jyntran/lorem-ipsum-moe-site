@@ -8,7 +8,7 @@ app.use(express.static('./dist/'));
 app.use(express.static('./src/client/'));
 app.use(express.static('./'));
 
-var api = require('src/api/routes/routes');
+var api = require('/src/api/routes/routes');
 app.use('/api', api);
 
 app.use('/*', function(req, res, next) {
