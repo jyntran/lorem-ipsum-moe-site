@@ -19,7 +19,7 @@
     "opn": "^3.0.2"
   },
   "scripts": {
-    "start": "npm start",
+    "start": "node src/server/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
